@@ -13,12 +13,12 @@ namespace UserApp
     {
         public event EventHandler<JobDoerResultEventArgs> OnJobDone;
 
-        private readonly Random _random = new Random();
+        private int _counter = 0;
 
         public void DoJob()
         {
-            var numberValue = _random.Next(1, 100);
-            OnJobDone?.Invoke(this, new JobDoerResultEventArgs(numberValue.ToString()));
+            _counter++;
+            OnJobDone?.Invoke(this, new JobDoerResultEventArgs(_counter.ToString()));
         }
     }
 }
