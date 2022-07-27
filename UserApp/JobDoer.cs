@@ -17,8 +17,8 @@ namespace UserApp
 
         public void DoJob()
         {
-            var charValue = (char)_random.Next('A', 'Z'+1);
-            OnJobDone?.Invoke(this, new JobDoerResultEventArgs(charValue.ToString()));
+            var numberValue = _random.Next(1, 100);
+            OnJobDone?.Invoke(this, new JobDoerResultEventArgs(numberValue.ToString()));
         }
     }
 }
