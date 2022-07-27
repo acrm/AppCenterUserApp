@@ -1,15 +1,14 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace UserApp
 {
-    internal class MainWindowViewModel : INotifyPropertyChanged
+    internal class MainPageViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         private readonly JobDoer _model;
-        private string? _jobReport;
+        private string _jobReport;
 
-        public MainWindowViewModel(JobDoer model)
+        public MainPageViewModel(JobDoer model)
         {
             _model = model;
             _model.OnJobDone += (s, e) => JobReport = e.Report;

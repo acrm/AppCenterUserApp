@@ -6,7 +6,7 @@ namespace UserApp
     internal class RelayCommand : ICommand
     {
         private readonly Action _execute;
-        private readonly Func<bool>? _canExecute;
+        private readonly Func<bool> _canExecute;
 
         public RelayCommand(Action execute)
         {
@@ -19,14 +19,15 @@ namespace UserApp
             _canExecute = canExecute;
         }
 
-        public event EventHandler? CanExecuteChanged
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
+
+        public void Execute(object parameter) => _execute.Invoke();
+
+        public void RaiseCanExecuteChanged()
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
-
-        public bool CanExecute(object? parameter) => _canExecute?.Invoke() ?? true;
-
-        public void Execute(object? parameter) => _execute.Invoke();
     }
 }
