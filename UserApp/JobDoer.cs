@@ -17,7 +17,7 @@ namespace UserApp
 
         public void DoJob()
         {
-            var numberValue = _random.Next(1, 100);
+            var numberValue = _random.Next(1, 200);
             OnJobDone?.Invoke(this, new JobDoerResultEventArgs(numberValue.ToString()));
         }
     }
